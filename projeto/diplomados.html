@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Diploma Zumbi dos Palmares</title>
-    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/style.css" />
   </head>
   <body>
     <header>
@@ -20,12 +20,71 @@
     <main>
       <section id="diplomados">
         <h1>Diplomados</h1>
+        <div id="diplomados_box">
+        </div>
       </section>
     </main>
     <footer>
       <section id="footer-institucional">
-        <h1>Footer</h1>
+        <h1>Feito por Thiago Colomeu - Todos os direitos reservados</h1>
       </section>
     </footer>
+    <script>
+      var diplomados = new Array();
+
+      function cadastrarDiplomado() {
+        var diplomado = {
+          nome: "Nome " + diplomados.length,
+          imagem: "/images/avatar.png",
+          data_nascimento: "01/01/1970",
+          data_falecimento: "01/01/1970",
+          bio: "Breve biografia " + diplomados.length,
+          printDiplomado: function () {
+            let card = document.createElement("div");
+            card.className = "diplomado";
+            let nome = document.createElement("p");
+            nome.className = "nome";
+            nome.innerText = this.nome;
+            let data_nascimento= document.createElement("p");
+            data_nascimento.className = "data_nascimento";
+            data_nascimento.innerText = this.data_nascimento;
+            let data_falecimento = document.createElement("p");
+            data_falecimento.className = "data_falecimento";
+            data_falecimento.innerText = this.data_falecimento;
+            let bio = document.createElement("p");
+            bio.className = "bio";
+            bio.innerText = this.bio;
+            let imagem = document.createElement("img");
+            imagem.className = "imagem";
+            imagem.alt = this.nome;
+            imagem.src = this.imagem;
+            card.appendChild(nome);
+            card.appendChild(imagem);
+            card.appendChild(data_nascimento);
+            card.appendChild(data_falecimento);
+            card.appendChild(bio);
+            return card;
+          },
+        };
+        diplomados.push(diplomado);
+        listarDiplomados();
+      }
+
+      function listarDiplomados() {
+        let divDiplomados = document.querySelector("#diplomados_box");
+        let sectionDiplomados = document.querySelector("#diplomados");
+        sectionDiplomados.removeChild(divDiplomados);
+        sectionDiplomados.innerHTML = '<div id="diplomados_box"></div>';
+        diplomados.forEach(function (diplomado) {
+          document
+            .querySelector("#diplomados_box")
+            .appendChild(diplomado.printDiplomado());
+        });
+      }
+
+      for (let index = 0; index <= 50; index++) {
+        cadastrarDiplomado();
+      }
+    </script>
   </body>
 </html>

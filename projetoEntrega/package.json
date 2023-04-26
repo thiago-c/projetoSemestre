@@ -1,0 +1,24 @@
+{
+  "name": "projeto",
+  "version": "1.0.0",
+  "description": "Projeto Semestral de Avaliação",
+  "main": "index.html",
+  "scripts": {
+    "start": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thiago-c/projetoSemestre.git"
+  },
+  "author": "ThiagoC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thiago-c/projetoSemestre/issues"
+  },
+  "homepage": "https://github.com/thiago-c/projetoSemestre#readme",
+  "dependencies": {
+    "firebase-tools": "^11.25.1",
+    "lite-server": "^2.6.1"
+  }
+}

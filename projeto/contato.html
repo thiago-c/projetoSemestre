@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Diploma Zumbi dos Palmares</title>
-    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/style.css" />
   </head>
   <body>
     <header>
@@ -19,13 +19,111 @@
     </header>
     <main>
       <section id="contato">
-        <h1>Contato</h1>
+        <h1>Entre em contato conosco</h1>
+        <form action="/index.php" method="post">
+          <label for="nome">Nome</label>
+          <input
+            required
+            type="text"
+            name="nome"
+            id="nome"
+            placeholder="Digite seu Nome"
+          />
+          <label for="fone">Fone</label>
+          <input
+            required
+            type="text"
+            name="fone"
+            id="fone"
+            placeholder="Digite seu Telefone"
+          />
+          <label for="email">E-mail</label>
+          <input
+            required
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Digite seu E-mail"
+          />
+          <label for="motivo_contato">Motivo de Contato</label>
+          <select name="contato" id="motivo_contato">
+            <option value="Dúvida">Dúvida</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Outros">Outros</option>
+          </select>
+          <label for="comentarios">Comentários Gerais</label>
+          <textarea
+            name="comentarios"
+            id="comentarios"
+            cols="30"
+            rows="10"
+          ></textarea>
+          <input type="button" value="Enviar" onclick="cadastrarMensagem();"/>
+        </form>
+      </section>
+      <section id="mensagens_section">
+        <div id="mensagens"></div>
       </section>
     </main>
     <footer>
       <section id="footer-institucional">
-        <h1>Footer</h1>
+        <h1>Feito por Thiago Colomeu - Todos os direitos reservados</h1>
       </section>
     </footer>
+    <script>
+      var mensagens = new Array();
+
+      function cadastrarMensagem() {
+        var mensagem = {
+          nome: document.querySelector("#nome").value,
+          fone: document.querySelector("#fone").value,
+          email: document.querySelector("#email").value,
+          motivo_contato: document.querySelector("#motivo_contato").value,
+          comentarios: document.querySelector("#comentarios").value,
+          printMensagem: function () {
+            let card = document.createElement("div");
+            card.className = "card_mensagem";
+            let mensagem = document.createElement("p");
+            mensagem.className = "mensagem";
+            mensagem.innerText =
+              "Nome : " +
+              this.nome +
+              "\n" +
+              "Fone : " +
+              this.fone +
+              "\n" +
+              "E-mail : " +
+              this.email +
+              "\n" +
+              "Motivo do Contato : " +
+              this.motivo_contato +
+              "\n" +
+              "Comentários : " +
+              this.comentarios;
+              card.appendChild(mensagem);
+              return card;
+          },
+        };
+        mensagens.push(mensagem);
+        document.querySelector("#nome").value = "";
+        document.querySelector("#fone").value = "";
+        document.querySelector("#email").value = "";
+        document.querySelector("#comentarios").value = "";
+        alert("Mensagem inserida nos Contatos!");
+        listarMensagens();
+      }
+
+      function listarMensagens() {
+        let divMensagens = document.querySelector("#mensagens");
+        let sectionMensagens = document.querySelector("#mensagens_section");
+        sectionMensagens.removeChild(divMensagens);
+        sectionMensagens.innerHTML = '<div id="mensagens"></div>';
+        mensagens.forEach(function (mensagem) {
+          document
+            .querySelector("#mensagens")
+            .appendChild(mensagem.printMensagem());
+        });
+      }
+    </script>
   </body>
 </html>
