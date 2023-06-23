@@ -28,6 +28,18 @@ export default function Header() {
         >
           Contato
         </Link>
+        <Link
+          to="/favoritos"
+          className="p-3 h-fit font-mono text-sm md:text-xl font-light hover:font-bold text-amber-900 dark:text-amber-100"
+        >
+          Meus Favoritos
+        </Link>
+        <Link
+          to="/login"
+          className="p-3 h-fit font-mono text-sm md:text-xl font-light hover:font-bold text-amber-900 dark:text-amber-100"
+        >
+          Login
+        </Link>
       </nav>
     </header>
   );
