@@ -2,6 +2,23 @@ import "./Styles/App.css";
 import Main from "../Components/Main";
 import Banner from "../Components/Banner";
 import Content from "../Components/Content";
+import Diplomaed from "../Components/Diplomaed";
+import DiplomaedGallery from "../Components/DiplomaedGallery";
+import {
+  collection,
+  getDocs,
+} from "firebase/firestore";
+import { db } from "../FirebaseConfig";
+
+const diplomados = [];
+try {
+  const querySnapshot = await getDocs(collection(db, "diplomaeds"));
+  querySnapshot.forEach((doc) => {
+    diplomados.push({ id: doc.id, ...doc.data() });
+  });
+} catch (error) {
+  console.log("Error fetching collection: ", error);
+}
 
 function App() {
   return (
@@ -12,6 +29,18 @@ function App() {
           id="home"
           title="Home"
           text={<>
+           <DiplomaedGallery id="diplomados">
+                {diplomados.map((diplomado, i) => (
+                  <Diplomaed
+                    id={diplomado.id}
+                    image={diplomado.image}
+                    title={diplomado.name}
+                    text={diplomado.bio}
+                    birth_date={diplomado.birthDate}
+                    date_of_death={diplomado.dateOfDeath}
+                  />
+                ))}
+              </DiplomaedGallery>
           </>}
         />
       </Main>

@@ -5,7 +5,7 @@ import Content from "./Content";
 export default function Footer() {
   return (
     <footer className="flex bg-amber-300 dark:bg-amber-900 bottom-0 flex-wrap">
-      <section className="w-1/3 flex shrink-0 justify-center">
+      <section className="w-full md:w-1/3 flex shrink-0 justify-center">
         <Content
           id="institucional"
           title="Institucional"
@@ -22,7 +22,7 @@ export default function Footer() {
           }
         />
       </section>
-      <section className="w-1/3 flex shrink-0 justify-center">
+      <section className="w-full md:w-1/3 flex shrink-0 justify-center">
         <Content
           id="contatos"
           title="Contatos"
@@ -47,7 +47,7 @@ export default function Footer() {
           }
         />
       </section>
-      <section className="w-1/3 flex shrink-0 justify-center">
+      <section className="w-full md:w-1/3 flex shrink-0 justify-center">
         <Content
           id="redes"
           title="Redes"

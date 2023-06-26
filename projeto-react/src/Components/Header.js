@@ -7,7 +7,7 @@ export default function Header() {
   if (UsrCtxt.authenticated) {
     return (
       <header className="bg-amber-300 dark:bg-amber-900">
-        <nav className="w-full mx-auto flex justify-center items-center">
+        <nav className="w-full mx-auto flex justify-center items-center flex-wrap">
           <Link to="/" className="p-3">
             <span className="text-sm md:text-xl font-light hover:font-bold text-amber-900 dark:text-amber-100">
               <i className="fa-solid fa-home"></i>
@@ -38,6 +38,12 @@ export default function Header() {
             Meus Favoritos
           </Link>
           <Link
+            to="/cadastro-diplomado"
+            className="p-3 h-fit font-mono text-sm md:text-xl font-light hover:font-bold text-amber-900 dark:text-amber-100"
+          >
+            Cadastrar Diplomado
+          </Link>
+          <Link
             to="/login"
             className="p-3 h-fit font-mono text-sm md:text-xl font-light hover:font-bold text-amber-900 dark:text-amber-100"
           >
@@ -49,7 +55,7 @@ export default function Header() {
   } else {
     return (
       <header className="bg-amber-300 dark:bg-amber-900">
-        <nav className="w-full mx-auto flex justify-center items-center">
+        <nav className="w-full mx-auto flex justify-center items-center flex-wrap">
           <Link to="/" className="p-3">
             <span className="text-sm md:text-xl font-light hover:font-bold text-amber-900 dark:text-amber-100">
               <i className="fa-solid fa-home"></i>

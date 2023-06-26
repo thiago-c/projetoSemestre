@@ -6,7 +6,13 @@ import Content from "../Components/Content";
 import Diplomaed from "../Components/Diplomaed";
 import DiplomaedGallery from "../Components/DiplomaedGallery";
 import { UsersContext } from "../Contexts/UsersProvider";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  documentId,
+} from "firebase/firestore";
 import { db } from "../FirebaseConfig";
 
 function Favoritos() {
@@ -26,9 +32,9 @@ function Favoritos() {
           console.log(doc.id, " => ", doc.data());
           favorites = doc.data().favorites;
         });
+        console.log(favorites);
         const querySnapshot = await getDocs(
-          collection(db, "diplomaeds"),
-          where("idUser", "in", favorites)
+          collection(db, "diplomaeds"), where(documentId(), 'in', [favorites])
         );
         querySnapshot.forEach((doc) => {
           diplomados.push({ id: doc.id, ...doc.data() });

@@ -11,6 +11,7 @@ import Contato from "./Pages/Contato";
 import Favoritos from "./Pages/Favoritos";
 import Login from "./Pages/Login";
 import Detalhe from "./Pages/Detalhe";
+import CadastroDiplomado from "./Pages/CadastroDiplomado";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -25,6 +26,7 @@ root.render(
           <Route path="/contato" element={<Contato />} />
           <Route path="/favoritos" element={<Favoritos />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/cadastro-diplomado" element={<CadastroDiplomado />} />
           <Route
             path="/detalhe/:id"
             element={<Detalhe params={useParams} />}
