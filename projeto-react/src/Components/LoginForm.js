@@ -1,26 +1,11 @@
-import React from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../FirebaseConfig";
+import React, { useContext } from "react";
+import { UsersContext } from "../Contexts/UsersProvider";
 
-const authUser = (event) => {
-  event.preventDefault();
-  const email = event.target.email.value;
-  const password = event.target.password.value;
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      const authenticated = true;
-      console.log("Usuário logado com sucesso", user);
-    })
-    .catch((error) => {
-      const authenticated = false;
-      console.log("Problemas ao logar usuário", error);
-    });
-};
+export default function LoginForm() {
+  const UsrCtxt = useContext(UsersContext);
 
-export default function Auth() {
   return (
-    <form className="w-full max-w-sm" onSubmit={authUser}>
+    <form className="w-full max-w-sm" onSubmit={UsrCtxt.authUser}>
       <div className="md:flex md:items-center mb-6">
         <div className="md:w-1/3">
           <label
