@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../FirebaseConfig";
+import {
+  doc,
+  updateDoc,
+  arrayUnion,
+  collection,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
+import { auth, db } from "../FirebaseConfig";
 
 export const UsersContext = React.createContext();
 
@@ -30,11 +39,30 @@ const UsersProvider = (props) => {
     setAuthenticated(false);
   };
 
+  const addFavorite = async (event) => {
+    event.preventDefault();
+    const fuid = event.target.uid.value;
+    const fdid = event.target.did.value;
+    let idDoc = "";
+    const q = query(collection(db, "users"), where("idUser", "==", fuid));
+    const querySnapshotFavorites = await getDocs(q);
+    querySnapshotFavorites.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data());
+      idDoc = doc.id;
+    });
+    const docRef = doc(db, "users", idDoc);
+    console.log(docRef);
+    await updateDoc(docRef, {
+      favorites: arrayUnion(fdid),
+    });
+  };
+
   return (
     <UsersContext.Provider
       value={{
         uid: uid,
         authenticated: authenticated,
+        addFavorite: addFavorite,
         authUser: authUser,
         logoff: logoff,
       }}

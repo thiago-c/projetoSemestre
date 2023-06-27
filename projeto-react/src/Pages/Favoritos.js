@@ -10,8 +10,7 @@ import {
   collection,
   query,
   where,
-  getDocs,
-  documentId,
+  getDocs
 } from "firebase/firestore";
 import { db } from "../FirebaseConfig";
 
@@ -34,10 +33,12 @@ function Favoritos() {
         });
         console.log(favorites);
         const querySnapshot = await getDocs(
-          collection(db, "diplomaeds"), where(documentId(), 'in', [favorites])
+          collection(db, "diplomaeds")
         );
         querySnapshot.forEach((doc) => {
-          diplomados.push({ id: doc.id, ...doc.data() });
+          if(favorites.includes(doc.id)){
+            diplomados.push({ id: doc.id, ...doc.data() });
+          }
         });
         favoritesSet(diplomados);
       } catch (error) {
